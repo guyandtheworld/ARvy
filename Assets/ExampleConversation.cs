@@ -26,15 +26,15 @@ using IBM.Watson.DeveloperCloud.Connection;
 
 public class ExampleConversation : MonoBehaviour
 {
-    private string _username = null;
-    private string _password = null;
-    private string _url = null;
-    private string _workspaceId = null;
+    private string _username = "39830ef0-e4ab-494f-8025-ae59b8042e1b";
+    private string _password = "PUuRhpN1gfe8";
+    private string _url = "https://gateway.watsonplatform.net/assistant/api";
+    private string _workspaceId = "84c2d3a9-f54d-4670-81ee-a63435f1462d";
 
     private Conversation _conversation;
     private string _conversationVersionDate = "2017-05-26";
 
-    private string[] _questionArray = { "can you turn up the AC", "can you turn on the wipers", "can you turn off the wipers", "can you turn down the ac", "can you unlock the door" };
+    private string[] _questionArray = { "One summer’s day, in a field,", "But the Ant went on its way", "When winter came, the Grasshopper" };
     private fsSerializer _serializer = new fsSerializer();
     private Dictionary<string, object> _context = null;
     private int _questionCount = -1;

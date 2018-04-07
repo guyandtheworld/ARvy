@@ -409,6 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioWat: {fileID: 1139495169}
   swapper: {fileID: 2039716848}
+  convo: {fileID: 1149205058}
 --- !u!1 &2039716848
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +524,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theTrackable: {fileID: 2135126500}
-  checkSwap: {fileID: 1867039122}
 --- !u!1 &2135126499
 GameObject:
   m_ObjectHideFlags: 0

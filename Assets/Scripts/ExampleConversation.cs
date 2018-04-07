@@ -24,6 +24,8 @@ using FullSerializer;
 using System.Collections.Generic;
 using IBM.Watson.DeveloperCloud.Connection;
 
+
+
 public class ExampleConversation : MonoBehaviour
 {
     private string _username = "39830ef0-e4ab-494f-8025-ae59b8042e1b";
@@ -34,11 +36,29 @@ public class ExampleConversation : MonoBehaviour
     private Conversation _conversation;
     private string _conversationVersionDate = "2017-05-26";
 
-    private string[] _questionArray = { "One summer’s day, in a field,", "But the Ant went on its way", "When winter came, the Grasshopper" };
+    private string[] _questionArray = {""};
     private fsSerializer _serializer = new fsSerializer();
     private Dictionary<string, object> _context = null;
     private int _questionCount = -1;
     private bool _waitingForResponse = true;
+
+    private object response;
+
+    public void dialogString(string statement)
+    {
+        _questionArray[0] = statement;
+        Runnable.Run(Examples());
+    }
+
+    public object returnResponse()
+    {
+        return response;
+    }
+
+    public void resetResponse()
+    {
+        response = null;
+    }
 
     void Start()
     {
@@ -49,8 +69,6 @@ public class ExampleConversation : MonoBehaviour
 
         _conversation = new Conversation(credentials);
         _conversation.VersionDate = _conversationVersionDate;
-
-        Runnable.Run(Examples());
     }
 
     private IEnumerator Examples()
@@ -110,8 +128,8 @@ public class ExampleConversation : MonoBehaviour
 
     private void OnMessage(object resp, Dictionary<string, object> customData)
     {
-        Log.Debug("ExampleConversation.OnMessage()", "Conversation: Message Response: {0}", customData["json"].ToString());
-
+        //Log.Debug("ExampleConversation.OnMessage()", "Conversation: Message Response: {0}", customData["json"].ToString());
+        response = customData["json"];
         //  Convert resp to fsdata
         fsData fsdata = null;
         fsResult r = _serializer.TrySerialize(resp.GetType(), resp, out fsdata);

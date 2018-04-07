@@ -1,26 +1,23 @@
 ﻿using UnityEngine;
 using Vuforia;
 using System.Collections;
+
 public class ModelSwapper : MonoBehaviour {
 
     public AnchorStageBehaviour theTrackable;
-
+    
+    private AssetBundle SceneAsset;
     //Models management.
     private Transform scene;
-
-    // For swapping models.
-    public GameObject checkSwap;
-    Selecter skeletor;
 
     // Use this for initialization
     void Start()
     {
-        skeletor = checkSwap.GetComponent<Selecter>();
         if (theTrackable == null)
         {
             Debug.Log("Warning: Trackable not set !!");
         }
-
+        SceneAsset = AssetBundle.LoadFromFile("C:\\Users\\RustBucket\\Downloads\\shapes.unity3d");
     }
 
     // Update is called once per frame
@@ -31,10 +28,7 @@ public class ModelSwapper : MonoBehaviour {
 
     public void SwapModel(string ModelName)
     {
-        //Loading sphere and cube from resource folder.
-        // You have to convert this to using AssetBundles.
-        scene = (Transform)Resources.Load("prefabs/" + ModelName, typeof(Transform));
-
+        GameObject scene = SceneAsset.LoadAsset<GameObject>(ModelName);
         GameObject trackableGameObject = theTrackable.gameObject;
 
         //disable any pre-existing augmentation
@@ -44,9 +38,8 @@ public class ModelSwapper : MonoBehaviour {
             child.gameObject.SetActive(false);
         }
 
-        Transform model = GameObject.Instantiate(scene) as Transform;
+        GameObject model = GameObject.Instantiate(scene);
         // Re-parent the cube as child of the trackable gameObject
         model.transform.parent = theTrackable.transform;
-        skeletor.resetSwapModel();
     }
 }

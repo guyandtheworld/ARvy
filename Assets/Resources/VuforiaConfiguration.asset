@@ -44,9 +44,9 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - Hopper
+    - ad
     dataSetsToActivate:
-    - Hopper
+    - ad
   videoBackground:
     clippingMode: 0
     numDivisions: 2

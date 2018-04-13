@@ -26,7 +26,7 @@ public class ModelSwapper : MonoBehaviour
     }
     void OnGUI()
     {
-        if (GUI.Button(new Rect(50, 50, 300, 100), "Change"))
+        if (GUI.Button(new Rect(50, 50, 50, 25), "Change"))
         {
             mSwapModel = true;
         }

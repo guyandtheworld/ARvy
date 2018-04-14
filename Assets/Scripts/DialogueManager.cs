@@ -8,6 +8,9 @@ public class DialogueManager : MonoBehaviour {
     // public Text nameText;
     public Text dialogueText;
 
+    public Animator animator;
+    public Animator animatorTitle;
+
     private Queue<string> sentences;
 
     // Use this for initialization
@@ -19,8 +22,9 @@ public class DialogueManager : MonoBehaviour {
 
     public void StartDialogue(Dialogue dialogue)
     {
+        animator.SetBool("IsOpen", true);
+        animatorTitle.SetBool("TitleOpen", false);
         Debug.Log("Starting Dialogue " + dialogue.name);
-
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
@@ -41,12 +45,25 @@ public class DialogueManager : MonoBehaviour {
         }
 
         string sentence = sentences.Dequeue();
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+    }
 
-        dialogueText.text = sentence;
-    } 
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return null;
+        }
+    }
 
     void EndDialogue()
-    {
-        Debug.Log("End of conversation");
-    }
+        {
+            // The pop up will be removed.
+            animator.SetBool("IsOpen", false);
+            animatorTitle.SetBool("TitleOpen", true);
+            Debug.Log("End of conversation");
+        }
 }

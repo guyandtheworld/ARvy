@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 538588020}
   - component: {fileID: 538588022}
   - component: {fileID: 538588021}
+  - component: {fileID: 538588023}
   m_Layer: 5
   m_Name: TextCard
   m_TagString: Untagged
@@ -491,6 +492,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 538588019}
+--- !u!95 &538588023
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 538588019}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2697bcc45f6b32d47a08833d468f421e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &567875077
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +843,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 996651975}
+  animator: {fileID: 538588023}
+  animatorTitle: {fileID: 1290744988}
 --- !u!1 &996651973
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +932,7 @@ GameObject:
   - component: {fileID: 1290744985}
   - component: {fileID: 1290744984}
   - component: {fileID: 1290744987}
+  - component: {fileID: 1290744988}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -935,7 +956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 201.94}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290744984
@@ -1052,6 +1073,23 @@ MonoBehaviour:
       in summer.\r"
     - "Then the Grasshopper knew...\r\n\r\nMORAL: WORK TODAY AND YOU CAN REAP THE
       BENEFITS TOMORROW!"
+--- !u!95 &1290744988
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290744982}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 03f252d1b3fae77458c98a835f6906a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1609674131
 GameObject:
   m_ObjectHideFlags: 0

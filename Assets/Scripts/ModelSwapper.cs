@@ -4,39 +4,40 @@ using System.Collections;
 public class ModelSwapper : MonoBehaviour
 {
     public TrackableBehaviour theTrackable;
-    private bool mSwapModel = false;
 
-    private int i = 1;
+    private string currentSceneCounter = "-1";
+    private int nextSceneCounter = -1;
     // Use this for initialization
+
+    private string ModelName = null;
+
+    private DialogueManager DM;
+    public GameObject dialogueManager;
+
     void Start()
     {
+        DM = dialogueManager.GetComponent<DialogueManager>();
         if (theTrackable == null)
         {
             Debug.Log("Warning: Trackable not set !!");
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
-        if (mSwapModel && theTrackable != null)
+        currentSceneCounter = DM.GetCurrentScene();
+        if (currentSceneCounter != ModelName)
         {
+            ModelName = currentSceneCounter;
             SwapModel();
-            mSwapModel = false;
         }
     }
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(50, 50, 50, 25), "Change"))
-        {
-            mSwapModel = true;
-        }
-    }
+
     private void SwapModel()
     {
-        string ModelName = (i % 5).ToString();
         GameObject trackableGameObject = theTrackable.gameObject;
         GameObject scene = Resources.Load("Prefabs\\" + ModelName) as GameObject;
-        i++;
+
         //disable any pre-existing augmentation
         for (int i = 0; i < trackableGameObject.transform.childCount;   i++)
         {

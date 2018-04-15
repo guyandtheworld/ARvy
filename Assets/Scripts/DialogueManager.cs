@@ -12,25 +12,43 @@ public class DialogueManager : MonoBehaviour {
     public Animator animatorTitle;
 
     private Queue<string> sentences;
+    private Queue<string> scenes;
+
+    private string CurrentScene = "0";
+
+    // Returns the currentScene story is on.
+    public string GetCurrentScene()
+    {
+        return CurrentScene;
+    }
 
     // Use this for initialization
-	void Start () {
+    void Start () {
         dialogueText.text = "";
         // nameText.text = "";
         sentences = new Queue<string>();
+        scenes = new Queue<string>();
 	}
 
+    // Starts the conversation by appending scenes and 
+    // sentences onto a queue
     public void StartDialogue(Dialogue dialogue)
     {
+        if (dialogue.scenes.Length != dialogue.sentences.Length)
+        {
+            Debug.LogError("Some of sentences are not alloted scenes!");
+        }
+
         animator.SetBool("IsOpen", true);
         animatorTitle.SetBool("TitleOpen", false);
+
         Debug.Log("Starting Dialogue " + dialogue.name);
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        for (int i = 0; i < dialogue.sentences.Length; i++)
         {
-            Debug.Log(sentence);
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(dialogue.sentences[i]);
+            scenes.Enqueue(dialogue.scenes[i].ToString());
         }
 
         DisplayNextSentence();
@@ -45,6 +63,8 @@ public class DialogueManager : MonoBehaviour {
         }
 
         string sentence = sentences.Dequeue();
+        CurrentScene = scenes.Dequeue();
+
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }

@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theTrackable: {fileID: 567875082}
+  dialogueManager: {fileID: 775167390}
 --- !u!1 &52044114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1074,7 @@ MonoBehaviour:
       in summer.\r"
     - "Then the Grasshopper knew...\r\n\r\nMORAL: WORK TODAY AND YOU CAN REAP THE
       BENEFITS TOMORROW!"
+    scenes: 01000000020000000200000002000000030000000400000004000000
 --- !u!95 &1290744988
 Animator:
   serializedVersion: 3

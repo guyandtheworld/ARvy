@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 2108210716, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: MenuFont
+  m_Name: New TMP Color Gradient
   m_EditorClassIdentifier: 
-  topLeft: {r: 0.6691177, g: 0.6229716, b: 0, a: 1}
-  topRight: {r: 0.8235294, g: 0.765398, b: 0, a: 1}
-  bottomLeft: {r: 1, g: 0.93103445, b: 0, a: 1}
-  bottomRight: {r: 1, g: 0.92941177, b: 0, a: 1}
+  topLeft: {r: 1, g: 1, b: 1, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 1, g: 1, b: 1, a: 1}

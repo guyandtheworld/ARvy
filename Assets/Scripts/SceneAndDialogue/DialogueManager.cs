@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class DialogueManager : MonoBehaviour {
 
@@ -13,6 +15,9 @@ public class DialogueManager : MonoBehaviour {
 
     private Queue<string> sentences;
     private Queue<string> scenes;
+
+    public GameObject quiz;
+    private LoadQuestionnaire loadQuestionnaire;
 
     private string CurrentScene = "0";
 
@@ -28,6 +33,8 @@ public class DialogueManager : MonoBehaviour {
         // nameText.text = "";
         sentences = new Queue<string>();
         scenes = new Queue<string>();
+        loadQuestionnaire = quiz.GetComponent<LoadQuestionnaire>();
+        
 	}
 
     // Starts the conversation by appending scenes and 
@@ -85,5 +92,12 @@ public class DialogueManager : MonoBehaviour {
             animator.SetBool("IsOpen", false);
             animatorTitle.SetBool("TitleOpen", true);
             Debug.Log("End of conversation");
+
+            loadQuestionnaire.Load();
         }
+
+    public void QuitStory()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
 }

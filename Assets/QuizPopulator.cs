@@ -15,7 +15,9 @@ public class QuizPopulator : MonoBehaviour {
     public GameObject QE;
     private QuestionElement questionElement;
 
+    // Queue for storing the Questions.
     private Queue<Question> questionQueue = new Queue<Question>();
+
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +32,10 @@ public class QuizPopulator : MonoBehaviour {
         NextQuestion();
     }
 
+
     public void NextQuestion() {
+
+        GetSelectedAnswer();
 
         // Disable all Option answers which are children.
         foreach (Transform child in AnswerPanel)
@@ -58,15 +63,23 @@ public class QuizPopulator : MonoBehaviour {
             TextMeshProUGUI Answertext = answer.GetComponent<TextMeshProUGUI>();
 
             Answertext.SetText(i);
-            Debug.Log(Answertext.isActiveAndEnabled);
 
             answerObject.SetParent(AnswerPanel);
         }
     }
 
-    public void OptionSet()
+    public void GetSelectedAnswer()
     {
-        Debug.Log("Option Set");
+        int count=0;
+        foreach (Transform child in AnswerPanel)
+        {
+            if (child.gameObject.active)
+            {
+                count++;
+            }
+        }
+
+        Debug.Log(count);
     }
 
     private void EndDialogue()

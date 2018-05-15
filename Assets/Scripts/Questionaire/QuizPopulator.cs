@@ -18,31 +18,39 @@ public class QuizPopulator : MonoBehaviour {
     // Queue for storing the Questions.
     private Queue<Question> questionQueue = new Queue<Question>();
 
+    // Get the Chosen option.
+    public Transform chooseOption;
+    private ChooseOption chooseOptionObject;
 
-	// Use this for initialization
-	void Start () {
+    private Question question;
+
+    // Point Manager
+    public Transform points;
+    private PointSystem pointsObject;
+
+    // Use this for initialization
+    void Start () {
         questionElement = QE.GetComponent<QuestionElement>();
         questionQueue.Clear();
+
+        pointsObject = points.GetComponent<PointSystem>();
 
         foreach (Question qna in questionElement.questions)
         {
             questionQueue.Enqueue(qna);
         }
 
-        NextQuestion();
+        // NextQuestion();
     }
 
 
     public void NextQuestion() {
 
-        GetSelectedAnswer();
-
-        // Disable all Option answers which are children.
-        foreach (Transform child in AnswerPanel)
+        // Shouldn't run during the first iteration.
+        if (questionQueue.Count < questionElement.questions.Count)
         {
-            child.gameObject.SetActiveRecursively(false);
+            GetSelectedAnswer();
         }
-
 
         if (questionQueue.Count == 0)
         {
@@ -50,9 +58,18 @@ public class QuizPopulator : MonoBehaviour {
             return;
         }
 
+        // Disable all Option answers which are children.
+        foreach (Transform child in AnswerPanel)
+        {
+            child.gameObject.SetActiveRecursively(false);
+        }
+
         // Gets Question object and sets Question.
-        Question question = questionQueue.Dequeue();
+        question = questionQueue.Dequeue();
         questionText.text = question.question;
+
+        Debug.Log(question.question);
+        Debug.Log(question.answers.Length);
 
         // Sets options to children.
         foreach (string i in question.answers)
@@ -66,20 +83,27 @@ public class QuizPopulator : MonoBehaviour {
 
             answerObject.SetParent(AnswerPanel);
         }
+
     }
 
     public void GetSelectedAnswer()
     {
-        int count=0;
-        foreach (Transform child in AnswerPanel)
+        string[] answers = question.answers;
+        int rightAnswerOption = question.rightAnswer;
+
+        string RightAnswer = answers[rightAnswerOption];
+
+        chooseOptionObject = chooseOption.GetComponent<ChooseOption>();
+        string ChosenAnswer = chooseOptionObject.answerSelected;
+
+        if (ChosenAnswer == RightAnswer)
         {
-            if (child.gameObject.active)
-            {
-                count++;
-            }
+            pointsObject.Scored();
+        }
+        else { 
+            Debug.Log("Wrong Answer! No Points");
         }
 
-        Debug.Log(count);
     }
 
     private void EndDialogue()

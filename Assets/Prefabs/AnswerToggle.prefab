@@ -314,6 +314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OptionSelected: 
+  chooseOption: {fileID: 4670309804522096, guid: 9eac074fef3131a43ae1bf0b3a0f8c47,
+    type: 2}
 --- !u!222 &222285787611637828
 CanvasRenderer:
   m_ObjectHideFlags: 1

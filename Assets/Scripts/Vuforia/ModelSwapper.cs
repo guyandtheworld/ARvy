@@ -11,12 +11,12 @@ public class ModelSwapper : MonoBehaviour
 
     private string ModelName = null;
 
-    private DialogueManager DM;
-    public GameObject dialogueManager;
+    private ViewManager DM;
+    public GameObject viewManager;
 
     void Start()
     {
-        DM = dialogueManager.GetComponent<DialogueManager>();
+        DM = viewManager.GetComponent<ViewManager>();
         if (theTrackable == null)
         {
             Debug.Log("Warning: Trackable not set !!");
